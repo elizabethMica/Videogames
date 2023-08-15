@@ -40,8 +40,8 @@ const Detail = () => {
 
  const goBack=(event)=>{
    event.preventDefault();
-  navigate("/home")
-  return ()=>dispatch(clearDetail())
+   navigate("/home")
+   return ()=>dispatch(clearDetail())
  }
 
   return (

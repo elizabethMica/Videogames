@@ -39,7 +39,6 @@ const Update = () => {
     },[])
   
 
-
     const handleChange =(event)=>{
      setInput({
       ...input,
@@ -67,8 +66,8 @@ const Update = () => {
         event.target.value= "default"
         validateInput({
         ...input, genres: [...input.genres, event.target.value]
-      })
-    } event.target.value = "defualt"
+        })
+      } event.target.value = "defualt"
     };
   
   
@@ -81,7 +80,6 @@ const Update = () => {
       validateInput({...input, genres: filteredGen})
     }
 
-  
     const handlePlatforms =(event)=>{
       event.preventDefault();
       const rep = input.platforms.find(plat => plat=== event.target.value)
@@ -115,7 +113,7 @@ const Update = () => {
 
     const isSubmitDisabled = Object.keys(errors).length > 0;
   
-    const handleSubmit = (event)=>{
+  const handleSubmit = (event)=>{
      event.preventDefault();
      dispatch(updateVgame(input, id)).then((updateError) =>{
 

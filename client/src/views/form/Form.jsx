@@ -26,7 +26,9 @@ const Form = () => {
 
   useEffect(()=>{
     dispatch(getGenres())
-  },[])
+    return()=>dispatch(clearErrors())
+  },[dispatch])
+
 
   const handleChange =(event)=>{
    setInput({
@@ -36,7 +38,7 @@ const Form = () => {
    setErrors(Validation({
     ...input,
     [event.target.name]: event.target.value
- }))
+   }))
   };
 
 
@@ -55,8 +57,8 @@ const Form = () => {
       event.target.value= "default"
       validateInput({
       ...input, genres: [...input.genres, event.target.value]
-    })
-  } event.target.value = "defualt"
+      })
+    } event.target.value = "defualt"
   };
 
 
@@ -65,7 +67,7 @@ const Form = () => {
     setInput({
       ...input,
       genres: filteredGen
-    })
+     })
     validateInput({...input, genres: filteredGen})
   }
 
@@ -119,8 +121,6 @@ const Form = () => {
           dispatch(setNewErrors({type:"postVideogame", error: postError.response.data}))
         }
    })
-   
-   
   };
 
   return (
@@ -155,6 +155,7 @@ const Form = () => {
           </div>
 
         <div className={style.relRat}>
+
           <div className={style.rel}>
           <label>Released</label>
           <input
@@ -180,7 +181,7 @@ const Form = () => {
 
         <div className={style.platGen}>
 
-         <div className={style.plat}>
+         <div className={style.plat}>    
           <label>Platforms</label>
           <select onChange={(event)=>handlePlatforms(event)}>
              <option value="default">choose platforms</option>
@@ -262,6 +263,6 @@ const Form = () => {
         </div>
     </div>
   )
-}
+};
 
 export default Form

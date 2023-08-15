@@ -3,6 +3,8 @@ const {Videogame, Genre} = require("../db");
 const {API_KEY} = process.env
 const {apiFilter} = require("./apiFilter");
 
+//funcion para traer los videojuegos por id, si el source es "API" busca ese mismo id en la api, 
+//si es id es "DB" los busca en la base de datos
 const getVGbyId = async(id, source)=>{
     if(source === "API"){
          const response = (await axios.get(`https://api.rawg.io/api/games/${id}?key=${API_KEY}`)).data

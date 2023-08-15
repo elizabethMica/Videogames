@@ -1,13 +1,10 @@
 import axios from 'axios';
+
 export const GET_ALL_VGAMES = "GET_ALL_VGAMES";
 export const GET_DETAIL = "GET_DETAIL";
 export const GET_GENRES = "GET_GENRES";
 export const POST_VGAME = "POST_VGAME";
 export const PAGINADO = "PAGINADO";
-// export const CREATED_FILTER = "CREATED_FILTER";
-// export const RATING_FILTER = "RATING_FILTER";
-// export const ORDER_FILTER = "ORDER_FILTER";
-// export const GENRES_FILTER = "GENRES_FILTER";
 export const SEARCH_NAME = "SEARCH_NAME";
 export const DELETE_VGAME = "DELETE_VGAME";
 export const UPDATE_VGAME = "UPDATE_VGAME";
@@ -35,11 +32,21 @@ export function getAllVGames(){
  }
 };
 
+
+export function paginado(order){
+    return async function(dispatch){
+     dispatch({
+         type: PAGINADO,
+         payload: order
+     })
+    }
+ };
+
+
 export function getDetail(id){
     return async function(dispatch){
         try {
             const response = (await axios.get("http://localhost:3001/videogames/" + id)).data
-            
             dispatch({
                 type: GET_DETAIL,
                 payload: response
@@ -49,6 +56,16 @@ export function getDetail(id){
         }
     }
 };
+
+
+export function clearDetail(){
+    return async function(dispatch){
+     dispatch({
+        type: CLEAR_DETAIL,
+     })
+    }
+};
+
 
 export function getGenres(){
     return async function(dispatch){
@@ -63,6 +80,7 @@ export function getGenres(){
         }
     }
 };
+
 
 export function postVgame(payload){
     return async function(dispatch){
@@ -84,6 +102,8 @@ export function postVgame(payload){
     }
 };
 
+
+
 export function setNewErrors(obj){
     return async function(dispatch){
         dispatch({
@@ -91,7 +111,8 @@ export function setNewErrors(obj){
             payload: obj
         })
     }
-}
+};
+
 
 export function clearErrors(){
     return async function(dispatch){
@@ -99,7 +120,8 @@ export function clearErrors(){
             type: CLEAR_ERRORS
         })
     }
-}
+};
+
 
 export function notReload(boolean){
     return async function(dispatch){
@@ -108,64 +130,8 @@ export function notReload(boolean){
             payload: boolean
         })
     }
-}
-
-
-// export function paginado(number){
-//     console.log(number)
-//  return async function(dispatch){
-//     dispatch({
-//         type: PAGINADO,
-//         payload: number
-//     })
-//  }
-// }
-export function paginado(order){
-   return async function(dispatch){
-    dispatch({
-        type: PAGINADO,
-        payload: order
-    })
-   }
 };
 
-// export function createdFilter(order){
-//     console.log(order)
-//     return async function(dispatch){
-//         dispatch({
-//             type: CREATED_FILTER,
-//             payload: order
-//         })
-//     }
-// };
-
-// export function ratingFilter(order){
-//     return async function(dispatch){
-//      dispatch({
-//          type: RATING_FILTER,
-//          payload:order
-//      })
-//     }
-//  };
-
-//  export function orderFilter(filter){
-//     console.log(filter)
-//     return async function(dispatch){
-//      dispatch({
-//          type: ORDER_FILTER,
-//          payload:filter
-//      })
-//     }
-//  };
-
-// export function genresFilter(filter){
-//     return async function(dispatch){
-//      dispatch({
-//         type: GENRES_FILTER,
-//         payload: filter
-//      })
-//     }
-// };
 
 export function filterBank(filterObj){
     return async function(dispatch){
@@ -174,7 +140,8 @@ export function filterBank(filterObj){
             payload: filterObj
         })
     }
-}
+};
+
 
 export function removeFilter(value){
     return async function(dispatch){
@@ -183,15 +150,8 @@ export function removeFilter(value){
             payload: value
         })
     }
-}
+};
 
-export function removeAllFilter(){
-    return async function(dispatch){
-        dispatch({
-            type: REMOVE_ALL_FILTER
-        })
-    }
-}
 
 export function filterApply(){
     return async function(dispatch){
@@ -199,7 +159,18 @@ export function filterApply(){
             type: FILTER_APPLY
         })
     }
-}
+};
+
+
+export function removeAllFilter(){
+    return async function(dispatch){
+        dispatch({
+            type: REMOVE_ALL_FILTER
+        })
+    }
+};
+
+
 
 export function searchName(name){
     return async function(dispatch){
@@ -210,6 +181,7 @@ export function searchName(name){
         })
     }
 };
+
 
 export function deleteVgame(id){
     return async function(dispatch){
@@ -224,6 +196,7 @@ export function deleteVgame(id){
         }
     }
 };
+
 
 export function updateVgame(payload, id){
     return async function(dispatch){
@@ -245,10 +218,4 @@ export function updateVgame(payload, id){
     }
 };
 
-export function clearDetail(){
-    return async function(dispatch){
-     dispatch({
-        type: CLEAR_DETAIL,
-     })
-    }
-};
+

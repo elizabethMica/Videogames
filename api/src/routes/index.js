@@ -8,11 +8,12 @@ const {getGenres} = require("../controllers/getGenres");
 const {deleteVG} = require("../controllers/deleteVG");
 const {updateVG} = require("../controllers/updateVG");
 
-//hacer rutas para los filtrados en vez de hacerlos en el front
+
 const router = Router();
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
+
 router.get("/videogames", getVGhandler);
 
 router.get("/videogames/:id",getVGbyIdHandler);

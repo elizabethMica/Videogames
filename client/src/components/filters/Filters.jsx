@@ -30,21 +30,21 @@ const Filters = () => {
       }else if(value === "dec_zA"){
         dispatch(filterBank({type:"sort", value:"Z-A"}))
       }
-    }
+    };
 
     const handleGenres = (event) => {
-        dispatch(filterBank({type:"genres", value: event.target.value}));
-        setGenre("")
+      dispatch(filterBank({type:"genres", value: event.target.value}));
+      setGenre("")
     };
 
     const handleDeletedFilter =(value)=>{
      dispatch(removeFilter(value))
-    }
+    };
 
     const handleFilterApply = ()=>{
       dispatch(filterApply())
       
-    }
+    };
 
     
    const api = "https://cdn-icons-png.flaticon.com/128/4652/4652094.png"
@@ -113,8 +113,7 @@ const Filters = () => {
               {filterObjs.map((x)=>{
                 return <>
                 <button className={style.btnDelete} onClick={() => handleDeletedFilter(x.value)}>{x.value}</button> 
-                </>
-                      
+                </>        
               })}
              </div>
         </>

@@ -13,7 +13,6 @@ const NavBar = () => {
   
   const imgLogo = "https://cdn-icons-png.flaticon.com/128/2992/2992282.png"
   const imgHome = "https://cdn-icons-png.flaticon.com/128/5948/5948524.png"
-  // const imgCreate = "https://cdn-icons-png.flaticon.com/128/1159/1159633.png"
   const imgCreate = " https://cdn-icons-png.flaticon.com/128/5719/5719509.png"
   const imgBye = "https://cdn-icons-png.flaticon.com/128/8336/8336213.png"
 

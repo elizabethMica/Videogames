@@ -1,4 +1,6 @@
-const apiFilter = async (array) =>{
+//funcion para filtrar los videogames que vienen de la api, para solo traer la info que necesitamos
+
+const apiFilter =  (array) =>{
 
     const clear = array.map((el) => {
         if(!el.name){return}

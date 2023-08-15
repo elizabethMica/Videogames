@@ -1,24 +1,8 @@
 import {
-    GET_ALL_VGAMES, 
-    GET_DETAIL, 
-    GET_GENRES, 
-    POST_VGAME, 
-    PAGINADO, 
-    CREATED_FILTER, 
-    RATING_FILTER,
-    ORDER_FILTER,
-    GENRES_FILTER,
-    SEARCH_NAME,
-    DELETE_VGAME,
-    UPDATE_VGAME,
-    CLEAR_DETAIL,
-    FILTER_BANK,
-    REMOVE_FILTER, 
-    FILTER_APPLY,
-    REMOVE_ALL_FILTER,
-    ERRORS,
-    CLEAR_ERRORS,
-    NOT_RELOAD
+    GET_ALL_VGAMES, GET_DETAIL, GET_GENRES, POST_VGAME, PAGINADO, 
+    SEARCH_NAME, DELETE_VGAME, UPDATE_VGAME, CLEAR_DETAIL,
+    FILTER_BANK, REMOVE_FILTER, FILTER_APPLY, REMOVE_ALL_FILTER,
+    ERRORS, CLEAR_ERRORS, NOT_RELOAD
    } from "./actions";
 
 let initialState ={
@@ -38,6 +22,7 @@ let initialState ={
 
 function rootReducer(state = initialState, action){
     const ITEMS_PER_PAGE = 15;
+
     switch(action.type){
         case GET_ALL_VGAMES:
             return {
@@ -46,27 +31,28 @@ function rootReducer(state = initialState, action){
                 paginado: [...action.payload].splice(0,ITEMS_PER_PAGE)
             }
 
-            case PAGINADO:
-                const next_page = state.currentPage +1;
-                const prev_page = state.currentPage -1;
-                const first_index = action.payload === "next" ? next_page * ITEMS_PER_PAGE : prev_page * ITEMS_PER_PAGE;
-                if(action.payload === "prev" && prev_page < 0){return {...state}}
-    
-                if(state.filter){
-                    if(first_index >= state.gamesFiltered.length) {return {...state}}
-                    return{
-                        ...state,
-                        paginado: [...state.gamesFiltered].splice(first_index, ITEMS_PER_PAGE),
-                        currentPage: action.payload === "next"? next_page : prev_page
-                      }
-                }
-    
-                if (action.payload === "next" && first_index >= [...state.videoGames].length) {return {...state}}
-    
+        case PAGINADO:
+            const next_page = state.currentPage +1;
+            const prev_page = state.currentPage -1;
+            const first_index = action.payload === "next" ? next_page * ITEMS_PER_PAGE : prev_page * ITEMS_PER_PAGE;
+
+            if(action.payload === "prev" && prev_page < 0){return {...state}}
+
+            if(state.filter){
+                if(first_index >= state.gamesFiltered.length) {return {...state}}
                 return{
                     ...state,
-                    paginado: [...state.videoGames].splice(first_index, ITEMS_PER_PAGE),
+                    paginado: [...state.gamesFiltered].splice(first_index, ITEMS_PER_PAGE),
                     currentPage: action.payload === "next"? next_page : prev_page
+                    }
+            }
+
+            if (action.payload === "next" && first_index >= [...state.videoGames].length) {return {...state}}
+
+            return{
+                ...state,
+                paginado: [...state.videoGames].splice(first_index, ITEMS_PER_PAGE),
+                currentPage: action.payload === "next"? next_page : prev_page
              }
         case GET_DETAIL:
             return{
@@ -94,79 +80,23 @@ function rootReducer(state = initialState, action){
                 ...state,
                 errors: {}
             }    
-        // case CREATED_FILTER:
-        //     if(action.payload === "created"){
-        //         return{
-        //             ...state,
-        //             gamesFiltered: [...state.videoGames].filter(el=>el.createdInDb),
-        //             paginado : [...state.videoGames].filter(el=>el.createdInDb).splice(0,ITEMS_PER_PAGE),
-        //             filter: true
-        //           }
-        //     }else if(action.payload === "api"){
-        //         return{
-        //             ...state,
-        //             gamesFiltered:[...state.videoGames].filter(el=> !el.createdInDb), 
-        //             paginado : [...state.videoGames].filter(el=> !el.createdInDb).splice(0,ITEMS_PER_PAGE),
-        //             filter: true
-        //            }
-        //         }
-         
-        // case RATING_FILTER:
-        //     let rating;
-        //     if(action.payload === "inc"){
-        //         rating = [...state.videoGames].sort((a,b)=> a.rating - b.rating)
-        //     }else if(action.payload === "dec"){
-        //         rating = [...state.videoGames].sort((a,b)=> b.rating - a.rating)
-        //     }
-        //     return {
-        //         ...state,
-        //         filter: true,
-        //         gamesFiltered: rating,
-        //         paginado: rating.splice(0,ITEMS_PER_PAGE)
-        //     };
-        // case ORDER_FILTER:
-        //         let order;
-        //         if(action.payload === "inc_aZ"){
-        //             order = [...state.videoGames].sort((a,b)=> a.name.localeCompare(b.name))
-        //         }else if(action.payload === "dec_zA"){
-        //             order = [...state.videoGames].sort((a,b)=> b.name.localeCompare(a.name))
-        //         }
-        //         return {
-        //             ...state,
-        //             filter: true,
-        //             gamesFiltered: order,
-        //             paginado: order.splice(0,ITEMS_PER_PAGE)
-        //         }; 
-        // case GENRES_FILTER:
-        //     const videoGames = state.videoGames;
-        //     let newArr = [];
-
-        //     videoGames.forEach((g)=>{
-        //       if(g.genres){
-        //         const aux = g.genres.map(x=>x.name === action.payload)
-        //         if(aux.includes(true)){
-        //             newArr.push(g)
-        //         }
-        //       }
-        //     })
-        //     return{
-        //         ...state,
-        //         gamesFiltered: newArr,
-        //         paginado: newArr.splice(0,ITEMS_PER_PAGE),
-        //         filter : true
-        //      }  
+        case POST_VGAME:
+            return{
+                ...state,
+                errors: {}
+            }    
+        
         case FILTER_BANK:
-           let array = state.arr_of_filterObjs;
-           //me aseguro q no haya dos iguales
-           if(action.payload.type === "games") array = array.filter((x)=>x.type !== "games") 
-        //    if(action.payload.type === "rating") array = array.filter((x)=>x.type !== "rating")
-           if(action.payload.type === "sort") array = array.filter((x)=>x.type !== "sort")
-           if(action.payload.type === "genres") array = array.filter((x)=>x.type !== "genres")
-           array = [...array, action.payload]
-           return{
+            let array = state.arr_of_filterObjs;
+            //me aseguro q no haya dos iguales
+            if(action.payload.type === "games") array = array.filter((x)=>x.type !== "games") 
+            if(action.payload.type === "sort") array = array.filter((x)=>x.type !== "sort")
+            if(action.payload.type === "genres") array = array.filter((x)=>x.type !== "genres")
+            array = [...array, action.payload]
+            return{
             ...state,
             arr_of_filterObjs: array
-           }
+            }
 
         case REMOVE_FILTER:
             let arr = state.arr_of_filterObjs;
@@ -178,7 +108,6 @@ function rootReducer(state = initialState, action){
         case FILTER_APPLY:
             const filterObjs = state.arr_of_filterObjs;
             const games = filterObjs.find(x=>x.type === "games")
-            // const rating = filterObjs.find(x=>x.type === "rating")
             const sort = filterObjs.find(x=>x.type === "sort")
             const genres = filterObjs.find(x=>x.type === "genres")
             
@@ -191,13 +120,6 @@ function rootReducer(state = initialState, action){
                     videoGames = videoGames.filter(x=> x.createdInDb)
                 }
             }
-            // if(rating){
-            //     if(rating.value === "Increase Rating"){
-            //         videoGames = videoGames.sort((a,b)=> a.rating - b.rating)
-            //     }else if(rating.value === "Decrease Rating"){
-            //         videoGames = videoGames.sort((a,b)=> b.rating - a.rating)
-            //     }
-            // }
             if(sort){
                 if(sort.value === "A-Z"){
                     videoGames = videoGames.sort((a,b)=> a.name.localeCompare(b.name))
@@ -225,7 +147,6 @@ function rootReducer(state = initialState, action){
                 }
             }
         case REMOVE_ALL_FILTER:
-
             return{
                 ...state,
                 arr_of_filterObjs: []
