@@ -1,0 +1,43 @@
+const { DataTypes } = require('sequelize');
+// Exportamos una funcion que define el modelo
+// Luego le injectamos la conexion a sequelize.
+module.exports = (sequelize) => {
+  // defino el modelo
+  sequelize.define('videogame', {
+    id:{
+     type: DataTypes.UUID,
+     primaryKey: true,
+     allowNull: false,
+     defaultValue: DataTypes.UUIDV4
+    },
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    image:{
+      type: DataTypes.TEXT,
+      defaultValue: "https://media.istockphoto.com/id/1303938743/es/foto/blanco-la-mejor-almohadilla-de-juego-flotando-sobre-fondo-blanco-idea-conceptual-m%C3%ADnima.jpg?s=612x612&w=0&k=20&c=_yJ_TOpSKZUu0dN7de7BCq--NFagk9xxRNUfiRVt06g="
+    },
+    platforms:{
+      type: DataTypes.ARRAY(DataTypes.STRING),
+      allowNull:false
+    },
+    released:{
+      type: DataTypes.STRING,
+      allowNull:false
+    },
+    rating:{
+      type:DataTypes.INTEGER,
+      allowNull:false
+    },
+    description:{
+      type: DataTypes.TEXT,
+      allowNull: false
+    },
+    createdInDb:{
+      type:DataTypes.BOOLEAN,
+      allowNull:false,
+      defaultValue: true
+    }
+  }, {timestamps: false});
+};
