@@ -217,5 +217,3 @@ export function updateVgame(payload, id){
         }
     }
 };
-
-

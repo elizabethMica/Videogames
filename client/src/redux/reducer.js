@@ -7,9 +7,7 @@ import {
 
 let initialState ={
     videoGames :[],
-    paginado: [],
     pageNumbers:[],
-    currentPage: 0,
     gamesFiltered: [],
     filter: false,
     detail: {},
@@ -17,7 +15,9 @@ let initialState ={
     coincidences: true,
     arr_of_filterObjs: [],
     errors: {},
-    not_reload: false
+    not_reload: false,
+    paginado: [],
+    currentPage: 0,
 }
 
 function rootReducer(state = initialState, action){
@@ -54,6 +54,7 @@ function rootReducer(state = initialState, action){
                 paginado: [...state.videoGames].splice(first_index, ITEMS_PER_PAGE),
                 currentPage: action.payload === "next"? next_page : prev_page
              }
+
         case GET_DETAIL:
             return{
                 ...state,
