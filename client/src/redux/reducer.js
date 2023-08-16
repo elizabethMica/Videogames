@@ -43,44 +43,33 @@ function rootReducer(state = initialState, action){
                 paginado: vgRenderGet
 
             }
-
-        // case PAGINADO:
-        //     const next_page = state.currentPage +1;
-        //     const prev_page = state.currentPage -1;
-        //     const first_index = action.payload === "next" ? next_page * ITEMS_PER_PAGE : prev_page * ITEMS_PER_PAGE;
-
-        //     if(action.payload === "prev" && prev_page < 0){return {...state}}
-
-        //     if(state.filter){
-        //         if(first_index >= state.gamesFiltered.length) {return {...state}}
-        //         return{
-        //             ...state,
-        //             paginado: [...state.gamesFiltered].splice(first_index, ITEMS_PER_PAGE),
-        //             currentPage: action.payload === "next"? next_page : prev_page
-        //             }
-        //     }
-
-        //     if (action.payload === "next" && first_index >= [...state.videoGames].length) {return {...state}}
-
-        //     return{
-        //         ...state,
-        //         paginado: [...state.videoGames].splice(first_index, ITEMS_PER_PAGE),
-        //         currentPage: action.payload === "next"? next_page : prev_page
-        //      }
         case PAGINADO:
             var current
           if(isNaN(action.payload)){
             if(action.payload === "next"){
-                if(state.currentPage !== state.pages.length){ current = state.currentPage +1}else{
+                if(state.currentPage !== state.pages.length){ current = state.currentPage +1}
+                else{
                     return {...state}
                 }
+            }else if(action.payload === "end"){
+                if(state.currentPage !== state.pages.length){
+                    current = state.pages.length;
+                }else{
+                    return{...state}
+                }
             }else if(action.payload === "prev"){
-                if(state.currentPage !==1){current = state.currentPage -1}
-                    else{
+                if(state.currentPage !== 1){
+                    current = state.currentPage -1
+                  }else{
                         return{...state}
                     }
+            }else if(action.payload === "start"){
+                if(state.currentPage !== 1){
+                  current = 1
+                }else{
+                    return{...state}
                 }
-            }else{
+            }}else{
                 current = action.payload
             }
             const totalPages = Math.ceil(state.filteredPaginate.length / ITEMS_PER_PAGE)

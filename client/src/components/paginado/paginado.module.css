@@ -1,4 +1,4 @@
-.paginadoCont{
+/* .paginadoCont{
     display: flex;
     justify-content: center;
     align-content: flex-end;
@@ -45,4 +45,51 @@
 
 .prev{
  width: 30px;
+} */
+
+
+.globalCont{
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+
+.imgPrev{
+    width: 16px;
+
+}
+
+.imgNext{
+    width: 16px;
+   
+}
+
+.next{
+    border-style: none;
+    background-color: rgba(0, 0, 0, 0);
+}
+.prev{
+    border-style: none;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.num{
+    font-weight: bold;
+    font-size: medium;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    background-color: rgba(226, 115, 115, 0);
+    border-style: none;
+    width: 35px;
+    height: auto;
+    border-radius: 8px;
+}
+
+.num:hover{
+     background-color: rgba(255, 255, 255, 0.758);
+
 }
