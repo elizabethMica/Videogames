@@ -33,11 +33,20 @@ export function getAllVGames(){
 };
 
 
-export function paginado(order){
+// export function paginado(order){
+//     return async function(dispatch){
+//      dispatch({
+//          type: PAGINADO,
+//          payload: order
+//      })
+//     }
+//  };
+
+export function paginado(value){
     return async function(dispatch){
      dispatch({
          type: PAGINADO,
-         payload: order
+         payload: value
      })
     }
  };

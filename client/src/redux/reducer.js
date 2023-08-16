@@ -16,8 +16,11 @@ let initialState ={
     arr_of_filterObjs: [],
     errors: {},
     not_reload: false,
+
     paginado: [],
-    currentPage: 0,
+    currentPage: 1,
+    pages: [],
+    filteredPaginate:[]
 }
 
 function rootReducer(state = initialState, action){
@@ -25,35 +28,74 @@ function rootReducer(state = initialState, action){
 
     switch(action.type){
         case GET_ALL_VGAMES:
+            const totalPagesGet = Math.ceil(action.payload.length / ITEMS_PER_PAGE)
+            const pagesGet = [...Array(totalPagesGet + 1).keys()].slice(1)
+
+            const indexOfLastP = state.currentPage * ITEMS_PER_PAGE
+            const indexOfFirstP = indexOfLastP- ITEMS_PER_PAGE
+
+            const vgRenderGet = action.payload.slice(indexOfFirstP, indexOfLastP)
             return {
                 ...state,
                 videoGames: action.payload,
-                paginado: [...action.payload].splice(0,ITEMS_PER_PAGE)
+                filteredPaginate: action.payload,
+                pages: pagesGet,
+                paginado: vgRenderGet
+
             }
 
+        // case PAGINADO:
+        //     const next_page = state.currentPage +1;
+        //     const prev_page = state.currentPage -1;
+        //     const first_index = action.payload === "next" ? next_page * ITEMS_PER_PAGE : prev_page * ITEMS_PER_PAGE;
+
+        //     if(action.payload === "prev" && prev_page < 0){return {...state}}
+
+        //     if(state.filter){
+        //         if(first_index >= state.gamesFiltered.length) {return {...state}}
+        //         return{
+        //             ...state,
+        //             paginado: [...state.gamesFiltered].splice(first_index, ITEMS_PER_PAGE),
+        //             currentPage: action.payload === "next"? next_page : prev_page
+        //             }
+        //     }
+
+        //     if (action.payload === "next" && first_index >= [...state.videoGames].length) {return {...state}}
+
+        //     return{
+        //         ...state,
+        //         paginado: [...state.videoGames].splice(first_index, ITEMS_PER_PAGE),
+        //         currentPage: action.payload === "next"? next_page : prev_page
+        //      }
         case PAGINADO:
-            const next_page = state.currentPage +1;
-            const prev_page = state.currentPage -1;
-            const first_index = action.payload === "next" ? next_page * ITEMS_PER_PAGE : prev_page * ITEMS_PER_PAGE;
-
-            if(action.payload === "prev" && prev_page < 0){return {...state}}
-
-            if(state.filter){
-                if(first_index >= state.gamesFiltered.length) {return {...state}}
-                return{
-                    ...state,
-                    paginado: [...state.gamesFiltered].splice(first_index, ITEMS_PER_PAGE),
-                    currentPage: action.payload === "next"? next_page : prev_page
+            var current
+          if(isNaN(action.payload)){
+            if(action.payload === "next"){
+                if(state.currentPage !== state.pages.length){ current = state.currentPage +1}else{
+                    return {...state}
+                }
+            }else if(action.payload === "prev"){
+                if(state.currentPage !==1){current = state.currentPage -1}
+                    else{
+                        return{...state}
                     }
+                }
+            }else{
+                current = action.payload
             }
+            const totalPages = Math.ceil(state.filteredPaginate.length / ITEMS_PER_PAGE)
+            const pages = [...Array(totalPages + 1).keys()].slice(1)
 
-            if (action.payload === "next" && first_index >= [...state.videoGames].length) {return {...state}}
+            const indexOfLastPage = current * ITEMS_PER_PAGE
+            const indexOfFirstPage = indexOfLastPage - ITEMS_PER_PAGE
 
-            return{
+            const vgRender = state.filteredPaginate.slice(indexOfFirstPage, indexOfLastPage)
+             return{
                 ...state,
-                paginado: [...state.videoGames].splice(first_index, ITEMS_PER_PAGE),
-                currentPage: action.payload === "next"? next_page : prev_page
-             }
+                currentPage: current,
+                paginado: vgRender,
+                pages:pages
+             } 
 
         case GET_DETAIL:
             return{
@@ -136,17 +178,28 @@ function rootReducer(state = initialState, action){
                 videoGames = videoGames.filter(x =>x.genres.some(j=>j.name === genres.value))
             }
             if(videoGames.length >0){
+                const totalPages = Math.ceil(videoGames.length / ITEMS_PER_PAGE)
+                const pages = [...Array(totalPages + 1).keys()].slice(1)
+
+                const indexOfLastPage = ITEMS_PER_PAGE
+                const indexOfFirstPage = indexOfLastPage - ITEMS_PER_PAGE
+
+                const vgRender = videoGames.slice(indexOfFirstPage, indexOfLastPage)
+
                 return{
                     ...state,
-                    gamesFiltered: videoGames,
-                    paginado: videoGames.splice(0,ITEMS_PER_PAGE),
-                    filter: true
+                    currentPage: 1,
+                    filteredPaginate: videoGames,
+                    pages: pages,
+                    paginado: vgRender
                 }
             } else{
                 return{
                     ...state, coincidences:false, paginado:[]
                 }
             }
+
+
         case REMOVE_ALL_FILTER:
             return{
                 ...state,
@@ -156,11 +209,19 @@ function rootReducer(state = initialState, action){
         case SEARCH_NAME:
             const response = action.payload
             if(response.length>0){
+                const totalPages = Math.ceil(response.length / ITEMS_PER_PAGE)
+                const pages = [...Array(totalPages + 1).keys()].slice(1)
+
+                const indexOfLastPage = ITEMS_PER_PAGE
+                const indexOfFirstPage = indexOfLastPage - ITEMS_PER_PAGE
+
+                const vgRender = response.slice(indexOfFirstPage, indexOfLastPage)
+
               return{
                 ...state,
-                gamesFiltered: response,
-                paginado: response.splice(0,ITEMS_PER_PAGE),
-                filter: true,
+                currentPage: 1,
+                pages: pages,
+                paginado: vgRender,
                 coincidences: true
               }
             }else{
@@ -187,7 +248,7 @@ function rootReducer(state = initialState, action){
             return{
                 ...state
             }
-    }
+        }
 };
 
 export default rootReducer;

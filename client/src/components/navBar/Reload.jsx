@@ -1,4 +1,4 @@
-import { getAllVGames, removeAllFilter } from '../../redux/actions';
+import { getAllVGames, paginado, removeAllFilter } from '../../redux/actions';
 import { useDispatch } from 'react-redux';
 import style from './navBar.module.css';
 
@@ -12,6 +12,7 @@ const Reload =()=>{
         event.preventDefault();
         dispatch(getAllVGames())
         dispatch(removeAllFilter())
+        dispatch(paginado(1))
     }
 
     return(
