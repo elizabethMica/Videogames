@@ -220,6 +220,7 @@ function rootReducer(state = initialState, action){
               return{
                 ...state,
                 currentPage: 1,
+                filteredPaginate: response,
                 pages: pages,
                 paginado: vgRender,
                 coincidences: true
