@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { createdFilter, ratingFilter, orderFilter, getGenres, genresFilter, filterBank, removeFilter, filterApply, removeAllFilter } from '../../redux/actions';
+import {getGenres, filterBank, removeFilter, filterApply} from '../../redux/actions';
 import style from './filters.module.css';
 
 const Filters = () => {
@@ -16,7 +16,7 @@ const Filters = () => {
     }, []);
 
     const handleFilter =(value)=>{
-      console.log(value)
+      
       if(value==="api"){
         dispatch(filterBank({type:"games", value:"Existing"}))
       }else if(value === "created"){

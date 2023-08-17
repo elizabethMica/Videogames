@@ -17,9 +17,7 @@ const Detail = () => {
   },[]);
 
   const removeHTMLtags =(string) => {
-    // Expresión regular para buscar etiquetas HTML
     const regex = /<[^>]*>/g;
-    // Reemplazar las etiquetas por una cadena vacía
     return string.replace(regex, '');
   }
 

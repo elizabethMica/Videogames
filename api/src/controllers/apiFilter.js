@@ -1,4 +1,3 @@
-//funcion para filtrar los videogames que vienen de la api, para solo traer la info que necesitamos
 
 const apiFilter =  (array) =>{
 

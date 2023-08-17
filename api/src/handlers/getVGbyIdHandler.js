@@ -1,7 +1,5 @@
 const {getVGbyId} = require("../controllers/getVGbyId");
 
-//handler para ruta id, para verificar si el id es un numero o es un uuid 
-//le pasa dos parametros al controller uno es el id que se recibe por params y otro es un string que dice que tipo es el id
 
 const getVGbyIdHandler =async(req, res)=>{
   const id = req.params.id;

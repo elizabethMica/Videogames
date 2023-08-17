@@ -48,10 +48,7 @@ const updateVG =async (req, res)=>{
         }
       }
 
-      return res.status(200).json({
-        message: 'Juego modificado con éxito!',
-        result: gameUpdated,
-      });
+      return res.status(200).json(gameUpdated);
     
     
   } catch (error) {

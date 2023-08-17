@@ -61,6 +61,22 @@ const Form = () => {
     } event.target.value = "defualt"
   };
 
+  
+    const handlePlatforms =(event)=>{
+      event.preventDefault();
+      const rep = input.platforms.find(plat => plat=== event.target.value)
+  
+      if(event.target.value !== "default" && !rep){//Si el valor no es la primer option y no está repetido
+        setInput({
+          ...input, platforms: [...input.platforms, event.target.value]
+        })
+        event.target.value= "default"
+  
+        validateInput({
+          ...input, platforms: [...input.platforms, event.target.value]
+        })
+      } 
+     };
 
   const handleDeleteGen = (event)=>{
     const filteredGen = input.genres.filter(genre => genre !== event.target.value)
@@ -70,22 +86,6 @@ const Form = () => {
      })
     validateInput({...input, genres: filteredGen})
   }
-
-  const handlePlatforms =(event)=>{
-    event.preventDefault();
-    const rep = input.platforms.find(plat => plat=== event.target.value)
-
-    if(event.target.value !== "default" && !rep){//Si el valor no es la primer option y no está repetido
-      setInput({
-        ...input, platforms: [...input.platforms, event.target.value]
-      })
-      event.target.value= "default"
-
-      validateInput({
-        ...input, platforms: [...input.platforms, event.target.value]
-      })
-    } 
-   };
 
   const handleDeletePlat = (event)=>{
     const filteredPlat = input.platforms.filter(plat => plat !== event.target.value)

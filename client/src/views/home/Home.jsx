@@ -48,7 +48,6 @@ const Home = () => {
                 :(<div className={style.divLoading}><p className={style.loading}>Loading...</p></div>))
       
       }
-        <Paginado />
     </div>
     </>
   )

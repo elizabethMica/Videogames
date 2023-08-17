@@ -1,6 +1,5 @@
 const {Genre}= require("../db");
 
-//funcion para obtener los generos de la base de datos
 
 const getGenres = async(req, res)=>{
     try {
