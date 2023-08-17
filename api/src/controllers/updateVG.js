@@ -4,10 +4,11 @@ const updateVG =async (req, res)=>{
   try {
     const { id } = req.params;
       const { name, description, platforms, genres, rating, released,image } = req.body;
-     console.log(name)
+     
       const existingGame = await Videogame.findOne({ where: {name:name}})
+
       if(existingGame && existingGame.id !== id){
-        console.log("kgkjhj")
+        
         return res.status(404).json({error: "The game already exists"})
       }
 
@@ -27,7 +28,7 @@ const updateVG =async (req, res)=>{
           },
         }
       );
-      console.log("EDITEDGAME: ",editedGame);
+     
 
       if(editedGame[0] === 0) {
         return res.status(404).json({ message: 'No se encuentra el juego solicitado' });

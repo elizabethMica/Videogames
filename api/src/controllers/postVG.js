@@ -37,7 +37,7 @@ const postVG = async(req, res)=>{
             ]
         })
         res.status(200).json(finalNewVG)
-        console.log("videogame creado")
+      
         }else{
             res.status(404).json({error:"The videogame already exists"})
         }

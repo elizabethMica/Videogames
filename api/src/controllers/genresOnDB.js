@@ -29,7 +29,7 @@ const genresOnDB = async ()=>{
            for(let i=0; i<allGenres.length; i++){
             await Genre.create({name: allGenres[i]})
            } 
-        // console.log("cargados")      
+             
         }
     } catch (error) {
         return {error: error.message}

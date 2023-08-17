@@ -20,7 +20,7 @@ const getAllVG = async ()=>{
 
     //for para mapear las paginas de la api, metiendolas en el array con promesas
     for(let i =1; i<6; i++){
-      arrayWithPromises = [...arrayWithPromises,axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page=${i}`)]
+      arrayWithPromises = [...arrayWithPromises, axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page=${i}`)]
     }
     
     

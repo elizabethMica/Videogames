@@ -1,6 +1,4 @@
 const { Router } = require('express');
-// Importar todos los routers;
-// Ejemplo: const authRouter = require('./auth.js');
 const {postVG} = require("../controllers/postVG");
 const {getVGhandler} = require('../handlers/getVGhandler');
 const {getVGbyIdHandler} = require('../handlers/getVGbyIdHandler');
@@ -11,20 +9,17 @@ const {updateVG} = require("../controllers/updateVG");
 
 const router = Router();
 
-// Configurar los routers
-// Ejemplo: router.use('/auth', authRouter);
-
 router.get("/videogames", getVGhandler);
 
 router.get("/videogames/:id",getVGbyIdHandler);
 
-router.post("/videogames",postVG);
+router.get("/genres", getGenres);
 
-router.get("/genres", getGenres)
+router.post("/videogames",postVG);
 
 router.delete("/delete/:id", deleteVG);
 
-router.patch("/update/:id", updateVG)
+router.patch("/update/:id", updateVG);
 
 
 module.exports = router;
