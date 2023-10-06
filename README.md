@@ -41,11 +41,9 @@ Caracteristicas:
 
 -  Alguna imagen de fondo representativa al proyecto.
 -  Botón para ingresar a la **`home page`**.
-<<<<<<< HEAD
-<img src="./photos/videogames_landing.png">
-=======
+
 <img src="./photos/videogames_landing.png" alt="landing"/>
->>>>>>> ffdbebcc2a3b1b5774d4f0a750d55c312f8a2e21
+
 
 <br />
 
