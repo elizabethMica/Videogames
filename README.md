@@ -257,5 +257,5 @@ Ten en cuenta que en esta instancia no es obligatorio el desarrollo de testing p
 <br />
 
 <div align="center">
-<img src="./videogame.png" alt="" />
+<img src="./photos/videogame.png" alt="" />
 </div>
