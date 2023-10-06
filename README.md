@@ -62,7 +62,7 @@ Caracteristicas:
 
 <br />
 
-**📍 DETAIL PAGE |** en esta vista se deberá mostrar toda la información específica de un videojuego:
+**📍 DETAIL PAGE |** deberá mostrar toda la información específica de un videojuego:
 
 -  ID.
 -  Nombre.
@@ -72,6 +72,10 @@ Caracteristicas:
 -  Fecha de lanzamiento.
 -  Rating.
 -  Géneros.
+En el caso de ser creado y almacenado en la base de datos, tendrá un boton para ser actualizado y un boton para ser eliminado.
+
+<img src="./photos/videogames_about.png" alt="about"/>
+<img src="./photos/videogames_deleted.png" alt="deleted"/>
 
 <br />
 
