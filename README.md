@@ -75,6 +75,7 @@ Caracteristicas:
 En el caso de ser creado y almacenado en la base de datos, tendrá un boton para ser actualizado y un boton para ser eliminado.
 
 <img src="./photos/videogames_about.png" alt="about"/>
+<br/>
 <img src="./photos/videogames_deleted.png" alt="deleted"/>
 
 <br />
