@@ -187,6 +187,7 @@ Se debe desarrollar una aplicación utilizando **React** y **Redux** que conteng
 
 -  Alguna imagen de fondo representativa al proyecto.
 -  Botón para ingresar a la **`home page`**.
+<img src="./photos/videogames_landing.png">
 
 <br />
 
