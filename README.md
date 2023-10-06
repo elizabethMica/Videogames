@@ -96,6 +96,21 @@ Este formulario es **controlado completamente con JavaScript**. Cuenta con los s
 
 <br />
 
+**📍 UPDATE |**: en esta vista se encontrará el formulario para actualizar el videojuego creado anteriormente.
+
+Es **controlado completamente con JavaScript** y cuenta con los siguientes campos a ser actualizados:
+-  Nombre.
+-  Imagen.
+-  Descripción.
+-  Plataformas.
+-  Fecha de lanzamiento.
+-  Rating.
+-  Posibilidad de seleccionar/agregar varios géneros en simultáneo.
+-  Botón para actualizar el videojuego.
+
+<img src="./photos/videogames_update.png" alt="update"/>
+
+<br />
 ---
 
 <br />
