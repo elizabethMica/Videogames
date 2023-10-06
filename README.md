@@ -82,8 +82,7 @@ En el caso de ser creado y almacenado en la base de datos, tendrá un boton para
 
 **📍 FORM PAGE |**: en esta vista se encontrará el formulario para crear un nuevo videojuego.
 
-Este formulario debe ser **controlado completamente con JavaScritp**. No se pueden utilizar validaciones HTML, ni utilizar librerías especiales para esto. Debe contar con los siguientes campos:
-
+Este formulario es **controlado completamente con JavaScript**. Cuenta con los siguientes campos:
 -  Nombre.
 -  Imagen.
 -  Descripción.
@@ -93,7 +92,7 @@ Este formulario debe ser **controlado completamente con JavaScritp**. No se pued
 -  Posibilidad de seleccionar/agregar varios géneros en simultáneo.
 -  Botón para crear el nuevo videojuego.
 
-> [**IMPORANTE**]: es requisito que el formulario de creación esté validado sólo con JavaScript. Puedes agregar las validaciones que consideres. Por ejemplo: que el nombre del videojuego no pueda contener símbolos, o que el rating no pueda exceder determinado valor, etc.
+<img src="./photos/videogames_form.png" alt="formulario"/>
 
 <br />
 
