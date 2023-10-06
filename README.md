@@ -41,7 +41,7 @@ Caracteristicas:
 
 -  Alguna imagen de fondo representativa al proyecto.
 -  Botón para ingresar a la **`home page`**.
-<img src="./photos/videogames_landing.png" alt="" />
+<span>![</span><span>Landing page</span><span>]</span><span>(</span><span>https://raw.githubusercontent.com/elizabethMica/Videogames/main/photos/videogames_landing.png</span><span>)</span>
 
 <br />
 
