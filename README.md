@@ -8,7 +8,6 @@
 -  Afirmar y conectar los conceptos aprendidos en la carrera.
 -  Aprender mejores prácticas.
 -  Aprender y practicar el workflow de GIT.
--  Utilizar y practicar testing.
 
 <br />
 
@@ -116,22 +115,9 @@ Es **controlado completamente con JavaScript** y cuenta con los siguientes campo
 <br />
 ---
 
-<br />
-
-### **🖱 TESTING**
-
-Ten en cuenta que en esta instancia no es obligatorio el desarrollo de testing para tu aplicación. De igual manera, te desafiamos a que los hagas, ¡ya que suman puntos!
-
--  Al menos tener un componente del frontend con sus tests respectivos.
--  Al menos tener dos rutas del backend con sus tests respectivos.
--  Al menos tener un modelo de la base de datos con sus tests respectivos.
-
-<br />
-
----
 
 <br />
 
 <div align="center">
-<img src="./photos/videogame.png" alt="" />
+
 </div>
