@@ -76,7 +76,7 @@ En el caso de ser creado y almacenado en la base de datos, tendrá un boton para
 
 <img src="./photos/videogames_about.png" alt="about"/>
 <br/>
-<img src="./photos/videogames_deleted.png" alt="deleted"/>
+<img src="./photos/edit_delete.png" alt="deleted"/>
 
 <br />
 
