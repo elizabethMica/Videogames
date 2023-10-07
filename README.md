@@ -113,8 +113,8 @@ Es **controlado completamente con JavaScript** y cuenta con los siguientes campo
 <img src="./photos/videogames_update.png" alt="update"/>
 
 <br />
----
 
+---
 ### **🖱 BASE DE DATOS**
 
 Crear dos modelos para la base de datos. La relación entre ambos modelos es de muchos a muchos.
