@@ -84,7 +84,7 @@ En el caso de ser creado y almacenado en la base de datos, tendrá un boton para
 
 Este formulario es **controlado completamente con JavaScript**. Cuenta con los siguientes campos:
 -  Nombre.
--  Imagen.
+-  Imagen(en caso de no agregar imagen, tendrá una de defecto).
 -  Descripción.
 -  Plataformas.
 -  Fecha de lanzamiento.
@@ -100,14 +100,14 @@ Este formulario es **controlado completamente con JavaScript**. Cuenta con los s
 
 Es **controlado completamente con JavaScript** y cuenta con los siguientes campos a ser actualizados:
 -  Nombre.
--  Imagen.
+-  Imagen(en caso de no agregar imagen, tendrá una de defecto).
 -  Descripción.
 -  Plataformas.
 -  Fecha de lanzamiento.
 -  Rating.
 -  Posibilidad de seleccionar/agregar varios géneros en simultáneo.
 -  Botón para actualizar el videojuego.
--  -Botón para volver en caso de arrepentimiento.
+-  Botón para volver en caso de arrepentimiento.
 
 <img src="./photos/videogames_update.png" alt="update"/>
 
