@@ -107,6 +107,7 @@ Es **controlado completamente con JavaScript** y cuenta con los siguientes campo
 -  Rating.
 -  Posibilidad de seleccionar/agregar varios géneros en simultáneo.
 -  Botón para actualizar el videojuego.
+-  -Botón para volver en caso de arrepentimiento.
 
 <img src="./photos/videogames_update.png" alt="update"/>
 
