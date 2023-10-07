@@ -114,7 +114,6 @@ Es **controlado completamente con JavaScript** y cuenta con los siguientes campo
 
 <br />
 ---
-<br/>
 
 ### **🖱 BASE DE DATOS**
 
