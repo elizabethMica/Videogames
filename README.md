@@ -114,7 +114,28 @@ Es **controlado completamente con JavaScript** y cuenta con los siguientes campo
 
 <br />
 ---
+### **🖱 BASE DE DATOS**
 
+Crear dos modelos para la base de datos. La relación entre ambos modelos es de muchos a muchos.
+
+**📍 MODELO 1 | Videogames**
+
+-  ID (son distintos a los que vienen de la API). \*
+-  Nombre. \*
+-  Descripción. \*
+-  Plataformas. \*
+-  Imagen. \*
+-  Fecha de lanzamiento. \*
+-  Rating. \*
+
+<br />
+
+**📍 MODELO 2 | Genres**
+
+-  ID. \*
+-  Nombre. \*
+
+<br />
 
 <br />
 
