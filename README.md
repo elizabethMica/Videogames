@@ -114,6 +114,7 @@ Es **controlado completamente con JavaScript** y cuenta con los siguientes campo
 
 <br />
 ---
+<br/>
 ### **🖱 BASE DE DATOS**
 
 Crear dos modelos para la base de datos. La relación entre ambos modelos es de muchos a muchos.
