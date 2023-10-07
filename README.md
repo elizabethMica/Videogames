@@ -59,6 +59,8 @@ Caracteristicas:
 -  Paginado para mostrar un total de 15 videojuegos por página.
 
 <img src="./photos/videogames_home.png" alt="home"/>
+<br/>
+<img src="./photos/videogames_filter.png" alt="filters"/>
 
 <br />
 
