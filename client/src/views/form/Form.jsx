@@ -1,19 +1,24 @@
-import React, {useEffect, useState} from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import Validation from './validation';
-import { getGenres, postVgame, clearErrors, getAllVGames, setNewErrors} from '../../redux/actions';
-import {useNavigate} from 'react-router-dom';
-import style from "./form.module.css";
+import React, {useEffect, useState} from 'react'; // Import React and necessary hooks
+import { useDispatch, useSelector } from 'react-redux'; // Import Redux hooks
+import Validation from './validation';  // Import the validation function
+import { getGenres, postVgame, clearErrors, getAllVGames, setNewErrors} from '../../redux/actions'; //Import Redux actions
+import {useNavigate} from 'react-router-dom';// Import useNavigate from React Router
+import style from "./form.module.css";// Import CSS styles
 
 
 const Form = () => {
-  const dispatch = useDispatch();
-  const genres = useSelector((state)=> state.genres);
-  const navigate = useNavigate()
-  const gErrors = useSelector((state)=> state.errors)
+  const dispatch = useDispatch();// Initialize useDispatch
 
-  const [errors, setErrors] = useState({});
+  // Get data from Redux state
+  const genres = useSelector((state)=> state.genres); 
+  const gErrors = useSelector((state)=> state.errors);
 
+  const navigate = useNavigate(); // Initialize the navigate function
+
+  const [errors, setErrors] = useState({}); // Initialize state for form errors
+
+
+  // Initialize state for form input
   const [input, setInput]= useState({
     name: "",
     description: "",
@@ -22,55 +27,81 @@ const Form = () => {
     rating:0,
     genres: [],
     image: ""
-  });
+  });  
+
 
   useEffect(()=>{
-    dispatch(getGenres())
-    return()=>dispatch(clearErrors())
+    dispatch(getGenres()) // Fetch genres from Redux
+    return()=>dispatch(clearErrors()) // Clear errors when unmounting
   },[dispatch])
 
 
+  //Handle function for form inputs and their validation
   const handleChange =(event)=>{
    setInput({
     ...input,
     [event.target.name]: event.target.value
-   })
+   });
    setErrors(Validation({
     ...input,
     [event.target.name]: event.target.value
-   }))
+   }));
   };
 
 
+  //A validate function to manage array errors
   const validateInput = (inputData) =>{
     const errors = Validation(inputData)
     setErrors(errors)
   }
 
+
+  //Handle function for arrays of genres
   const handleGenres =(event)=>{
     event.preventDefault();
-    const rep = input.genres.find(genre => genre=== event.target.value)
-    if(event.target.value !== "default" && !rep){//Si el valor no es la primer option y no está repetido
+
+    //Method:  find() to make sure there's only one of each genre
+    const rep = input.genres.find(genre => genre === event.target.value)
+
+    //Conditional to check if the value it's not "default" and it's not repeated itself
+    if(event.target.value !== "default" && !rep){
       setInput({
         ...input, genres: [...input.genres, event.target.value]
       })
-      event.target.value= "default"
+      event.target.value= "default";
+
       validateInput({
       ...input, genres: [...input.genres, event.target.value]
       })
-    } event.target.value = "defualt"
+    } event.target.value = "defualt";
   };
 
-  
+  //Handle funtion to handle delected genres on the array
+  const handleDeleteGen = (event)=>{
+
+    //Method: filter() to keep the data that is not equal to the value
+    const filteredGen = input.genres.filter(genre => genre !== event.target.value)
+    setInput({
+      ...input,
+      genres: filteredGen
+     });
+    validateInput({...input, genres: filteredGen})
+  }
+
+
+  //Handle function for arrays of platforms
     const handlePlatforms =(event)=>{
       event.preventDefault();
+
+      //Method: find() to make sure there's only one of each platform
       const rep = input.platforms.find(plat => plat=== event.target.value)
   
-      if(event.target.value !== "default" && !rep){//Si el valor no es la primer option y no está repetido
+      //Conditional to check if the value it's not "default" and it's not repeated itself
+      if(event.target.value !== "default" && !rep){
         setInput({
           ...input, platforms: [...input.platforms, event.target.value]
         })
-        event.target.value= "default"
+        event.target.value= "default";
   
         validateInput({
           ...input, platforms: [...input.platforms, event.target.value]
@@ -78,24 +109,19 @@ const Form = () => {
       } 
      };
 
-  const handleDeleteGen = (event)=>{
-    const filteredGen = input.genres.filter(genre => genre !== event.target.value)
-    setInput({
-      ...input,
-      genres: filteredGen
-     })
-    validateInput({...input, genres: filteredGen})
-  }
-
+ //Handle funtion to handle delected platforms on the array
   const handleDeletePlat = (event)=>{
+
+     //Method: filter() to keep the data that is not equal to the value
     const filteredPlat = input.platforms.filter(plat => plat !== event.target.value)
     setInput({
       ...input,
       platforms: filteredPlat
-    })
+    });
     validateInput({...input, platforms: filteredPlat})
   }
 
+  //If there are errors you can't submit the info
   const isSubmitDisabled = Object.keys(errors).length > 0;
 
   const handleSubmit = (event)=>{
