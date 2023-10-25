@@ -5,6 +5,7 @@ import {
     ERRORS, CLEAR_ERRORS, NOT_RELOAD
    } from "./actions";
 
+// Initial state for the Redux store
 let initialState ={
     videoGames :[],
     pageNumbers:[],
@@ -21,11 +22,14 @@ let initialState ={
     filteredPaginate:[]
 }
 
+
+// Reducer function for handling Redux actions
 function rootReducer(state = initialState, action){
     const ITEMS_PER_PAGE = 15;
 
     switch(action.type){
         case GET_ALL_VGAMES:
+            // Handle getting all videogames and paginating them
             const totalPagesGet = Math.ceil(action.payload.length / ITEMS_PER_PAGE)
             const pagesGet = [...Array(totalPagesGet + 1).keys()].slice(1)
 
@@ -42,6 +46,7 @@ function rootReducer(state = initialState, action){
 
             }
         case PAGINADO:
+            // Handle paginating the videogames
             var current
           if(isNaN(action.payload)){
             if(action.payload === "next"){
@@ -85,32 +90,38 @@ function rootReducer(state = initialState, action){
              } 
 
         case GET_DETAIL:
+            // Handle getting the details of a specific videogame
             return{
                 ...state,
                 detail: action.payload
             } 
         case NOT_RELOAD:
+            // Handle the notReload state
             return{
                 ...state,
                 not_reload: action.payload
             }
         case GET_GENRES: 
+         // Handle getting the list of genres
             return{
                 ...state,
                 genres: action.payload
             }
         case ERRORS:
+            // Handle errors and store them in the state
             const objError = action.payload
             return{
                 ...state,
                 errors: {...state.errors, [objError.type]: objError.error}
             }
         case CLEAR_ERRORS:
+             // Handle clearing error messages
             return{
                 ...state,
                 errors: {}
             }    
         case POST_VGAME:
+              // Handle post videogame action
             return{
                 ...state,
                 errors: {}
@@ -118,7 +129,7 @@ function rootReducer(state = initialState, action){
         
         case FILTER_BANK:
             let array = state.arr_of_filterObjs;
-            //me aseguro q no haya dos iguales
+            //Checking there is no repeated filters
             if(action.payload.type === "games") array = array.filter((x)=>x.type !== "games") 
             if(action.payload.type === "sort") array = array.filter((x)=>x.type !== "sort")
             if(action.payload.type === "genres") array = array.filter((x)=>x.type !== "genres")
@@ -129,6 +140,7 @@ function rootReducer(state = initialState, action){
             }
 
         case REMOVE_FILTER:
+            //Handle the removal of a filter before applying it
             let arr = state.arr_of_filterObjs;
             let deletedFilter = arr.filter((x)=> x.value !== action.payload)
             return{
@@ -136,6 +148,7 @@ function rootReducer(state = initialState, action){
                 arr_of_filterObjs: deletedFilter
             }
         case FILTER_APPLY:
+            //Handle filters to apply simultaneously
             const filterObjs = state.arr_of_filterObjs;
             const games = filterObjs.find(x=>x.type === "games")
             const sort = filterObjs.find(x=>x.type === "sort")
@@ -188,12 +201,14 @@ function rootReducer(state = initialState, action){
 
 
         case REMOVE_ALL_FILTER:
+            //Handle the removal of all filters
             return{
                 ...state,
                 arr_of_filterObjs: []
             }    
 
         case SEARCH_NAME:
+            //Handle search by name and pagination
             const response = action.payload
             if(response.length>0){
                 const totalPages = Math.ceil(response.length / ITEMS_PER_PAGE)
@@ -220,15 +235,18 @@ function rootReducer(state = initialState, action){
               }
             };  
         case DELETE_VGAME:
+              // Handle delete videogame action
             return{
                 ...state
             }   
         case UPDATE_VGAME:
+             // Handle update videogame action
             return {
                 ...state,
                 detail:  action.payload
             }      
         case CLEAR_DETAIL:
+             // removes the detail of an videogame once unmounted
              return{
                 ...state, detail: {}
              }               

@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+// Action types
 export const GET_ALL_VGAMES = "GET_ALL_VGAMES";
 export const GET_DETAIL = "GET_DETAIL";
 export const GET_GENRES = "GET_GENRES";
@@ -18,6 +19,7 @@ export const CLEAR_ERRORS = "CLEAR_ERRORS";
 export const NOT_RELOAD = "NOT_RELOAD";
 
 
+// Action to get all videogames
 export function getAllVGames(){
  return async function(dispatch){
     try {
@@ -33,15 +35,7 @@ export function getAllVGames(){
 };
 
 
-// export function paginado(order){
-//     return async function(dispatch){
-//      dispatch({
-//          type: PAGINADO,
-//          payload: order
-//      })
-//     }
-//  };
-
+// Action to update the paginado state
 export function paginado(value){
     return async function(dispatch){
      dispatch({
@@ -52,6 +46,7 @@ export function paginado(value){
  };
 
 
+ // Action to get the details of a specific videogame
 export function getDetail(id){
     return async function(dispatch){
         try {
@@ -67,6 +62,8 @@ export function getDetail(id){
 };
 
 
+
+// Action to clear the detail state
 export function clearDetail(){
     return async function(dispatch){
      dispatch({
@@ -76,6 +73,7 @@ export function clearDetail(){
 };
 
 
+// Action to get the list of genres
 export function getGenres(){
     return async function(dispatch){
         try {
@@ -91,6 +89,7 @@ export function getGenres(){
 };
 
 
+// Action to post a new videogame
 export function postVgame(payload){
     return async function(dispatch){
         try {
@@ -112,7 +111,7 @@ export function postVgame(payload){
 };
 
 
-
+// Action to set new error messages
 export function setNewErrors(obj){
     return async function(dispatch){
         dispatch({
@@ -123,6 +122,7 @@ export function setNewErrors(obj){
 };
 
 
+// Action to clear error messages
 export function clearErrors(){
     return async function(dispatch){
         dispatch({
@@ -132,6 +132,7 @@ export function clearErrors(){
 };
 
 
+// Action to update the notReload state
 export function notReload(boolean){
     return async function(dispatch){
         dispatch({
@@ -142,6 +143,7 @@ export function notReload(boolean){
 };
 
 
+// Action to filter videogames
 export function filterBank(filterObj){
     return async function(dispatch){
         dispatch({
@@ -152,6 +154,8 @@ export function filterBank(filterObj){
 };
 
 
+
+// Action to remove a filter
 export function removeFilter(value){
     return async function(dispatch){
         dispatch({
@@ -162,6 +166,7 @@ export function removeFilter(value){
 };
 
 
+// Action to apply filters
 export function filterApply(){
     return async function(dispatch){
         dispatch({
@@ -171,6 +176,7 @@ export function filterApply(){
 };
 
 
+// Action to remove all filters
 export function removeAllFilter(){
     return async function(dispatch){
         dispatch({
@@ -180,7 +186,7 @@ export function removeAllFilter(){
 };
 
 
-
+// Action to search for videogames by name
 export function searchName(name){
     return async function(dispatch){
         const response = (await axios.get("http://localhost:3001/videogames?name=" + name)).data
@@ -192,6 +198,7 @@ export function searchName(name){
 };
 
 
+// Action to delete a videogame
 export function deleteVgame(id){
     return async function(dispatch){
         try {
@@ -207,6 +214,7 @@ export function deleteVgame(id){
 };
 
 
+// Action to update a videogame
 export function updateVgame(payload, id){
     return async function(dispatch){
         try {
