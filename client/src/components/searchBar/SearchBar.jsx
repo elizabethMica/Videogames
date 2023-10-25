@@ -12,10 +12,12 @@ const SearchBar = () => {
 
   const [search, setSearch] = useState("");
 
+  // Update the search state with the input value
   const handleChange=(event)=>{
     setSearch(event.target.value)
    }
 
+   // Trigger the search when the Enter key is pressed
    const auxFunction = (event) =>{
     if(event.key==="Enter"){
       handleSubmit()
@@ -23,8 +25,8 @@ const SearchBar = () => {
   }
 
   const handleSubmit=()=>{
-    dispatch(searchName(search))
-    setSearch("")
+    dispatch(searchName(search)) // Dispatch an action to search for items with the specified name
+    setSearch("") // Clear the search input field after searching
   }
 
   return (

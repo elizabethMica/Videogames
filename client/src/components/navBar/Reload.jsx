@@ -8,11 +8,12 @@ const Reload =()=>{
 
     const imgReload ="https://cdn-icons-png.flaticon.com/128/748/748090.png";
 
+    // Function to reload data and remove filters
     const reload =(event)=>{
         event.preventDefault();
-        dispatch(getAllVGames())
-        dispatch(removeAllFilter())
-        dispatch(paginado(1))
+        dispatch(getAllVGames()) // Fetch all videogames
+        dispatch(removeAllFilter())// Remove all filters
+        dispatch(paginado(1))// Go to the first page
     }
 
     return(

@@ -23,6 +23,7 @@ const NavBar = () => {
       
         <img className={style.imgLogo} src={imgLogo} alt="logo"/> 
         
+        {/* Display filters, reload button, and search bar if not on certain routes */}
         { !(pathname === "/create" || pathname.includes("/detail") || pathname.includes("/update")) && <Filters path="/:"/>}
         { !(pathname === "/create" || pathname.includes("/detail") || pathname.includes("/update") ) && <Reload path="/:"/>}
         { !(pathname === "/create" || pathname.includes("/detail") || pathname.includes("/update") ) && <SearchBar path="/:"/>}
@@ -31,6 +32,7 @@ const NavBar = () => {
         <NavLink to="/"><button className={style.btnLogOut} title="log out"><img src={imgBye} className={style.imgBye} alt="log out"/></button></NavLink>    
       </div>
     <div>
+      {/* Display pagination component if not on certain routes */}
       { 
       !(pathname === "/create" || pathname.includes("/detail") || pathname.includes("/update")) && <Paginado path="/:"/>
       }
