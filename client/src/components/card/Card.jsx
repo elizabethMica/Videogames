@@ -8,6 +8,8 @@ const Card = (props) => {
      <img className={style.image} src={props.image} alt={`image of ${props.name}`} />
      <h3 className={style.name}>{props.name}</h3>
      <h6 className={style.genres}>{props.genres}</h6>
+
+     {/* Create a navigation link to the detail page for this video game */}
      <NavLink to={`/detail/${props.id}`}>
       <button className={style.btn}>About</button>
       </NavLink>

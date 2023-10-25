@@ -12,11 +12,11 @@ const Filters = () => {
     const [genre, setGenre] = useState("")
 
     useEffect(() => {
-        dispatch(getGenres());
+        dispatch(getGenres()); //Fetch genres
     }, []);
 
     const handleFilter =(value)=>{
-      
+       // Handle various types of filters, such as "api," "created," "inc," "dec," "inc_aZ," "dec_zA"
       if(value==="api"){
         dispatch(filterBank({type:"games", value:"Existing"}))
       }else if(value === "created"){
@@ -32,21 +32,24 @@ const Filters = () => {
       }
     };
 
+    //Handle type genres for filters
     const handleGenres = (event) => {
       dispatch(filterBank({type:"genres", value: event.target.value}));
       setGenre("")
     };
 
+     // Remove a filter
     const handleDeletedFilter =(value)=>{
      dispatch(removeFilter(value))
     };
 
+    // Apply the selected filters
     const handleFilterApply = ()=>{
       dispatch(filterApply())
       
     };
 
-    
+    //URLs for icons
    const api = "https://cdn-icons-png.flaticon.com/128/4652/4652094.png"
    const created = "https://cdn-icons-png.flaticon.com/128/3659/3659699.png"
    const ascRating = "https://cdn-icons-png.flaticon.com/128/3976/3976230.png"
@@ -56,6 +59,7 @@ const Filters = () => {
 
     return (
         <>
+        {/* Filters for games */}
             <div className={style.filtrosCont}>
               <div className={style.nameLabel}>
                 <label className={style.nombres}>games</label>
@@ -66,6 +70,7 @@ const Filters = () => {
               </div>
             </div>
 
+        {/* Filters for rating */}
             <div className={style.filtrosCont}>
               <div className={style.nameLabel}>
                 <label className={style.nombres}>rating</label>
@@ -76,6 +81,7 @@ const Filters = () => {
                 </div>
             </div>
 
+        {/* Filters for name */}
             <div className={style.filtrosCont}>
               <div className={style.nameLabel}>
                 <label className={style.nombres}>name</label>
@@ -86,6 +92,7 @@ const Filters = () => {
               </div>
             </div>
 
+        {/* Filters for genres */}
             <div className={style.filtrosCont}>
               <div className={style.nameLabel}>
                 <label className={style.nombres}>genres</label>
@@ -101,6 +108,8 @@ const Filters = () => {
                     })}
                 </select>
             </div>
+
+        {/* Apply filters button */}
             <div className={style.title_btn}>
              <div className={style.nameLabel}>
               <label>filters</label>
@@ -109,6 +118,8 @@ const Filters = () => {
               <button className={style.applyBtn} onClick={handleFilterApply}>apply</button>
                 </div>
              </div>
+
+        {/* Render selected filters for display */}
              <div className={style.renderFilters}>
               {filterObjs.map((x)=>{
                 return <>

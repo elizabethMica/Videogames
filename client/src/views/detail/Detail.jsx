@@ -7,30 +7,34 @@ import style from './detail.module.css';
 
 const Detail = () => {
   const dispatch = useDispatch();
-  const {id} = useParams();
-  const videoGame = useSelector((state)=>state.detail);
+  const {id} = useParams(); // Get the "id" parameter from the URL
+  const videoGame = useSelector((state)=>state.detail); // Get the videogame details from Redux
   const navigate = useNavigate()
 
   useEffect(()=>{
-    dispatch(getDetail(id))
-    return ()=>dispatch(clearDetail())
+    dispatch(getDetail(id))// Fetch video game details
+    return ()=>dispatch(clearDetail())// Clear the detail when unmounting
   },[]);
 
+
+  // Remove HTML tags from a string
   const removeHTMLtags =(string) => {
     const regex = /<[^>]*>/g;
     return string.replace(regex, '');
   }
 
+  //Handle function to delete the selected videogame with the id
  const deleteHandler=(event)=>{
   event.preventDefault();
-  dispatch(deleteVgame(id))
+  dispatch(deleteVgame(id))//Dispatch the action with the id as a parameter
   alert("Videogame deleted")
   setTimeout(()=>{
-    dispatch(getAllVGames())
-    navigate("/home")
+    dispatch(getAllVGames())// Fetch all videogames
+    navigate("/home")// Navigate back to the home page
   }, 1000);
  }
 
+ //Handle function to navigate to the update route
  const editHandler=(event)=>{
   navigate("/update/" + id)
  }
@@ -39,7 +43,7 @@ const Detail = () => {
  const goBack=(event)=>{
    event.preventDefault();
    navigate("/home")
-   return ()=>dispatch(clearDetail())
+   return ()=>dispatch(clearDetail()) // Clear the detail
  }
 
   return (
