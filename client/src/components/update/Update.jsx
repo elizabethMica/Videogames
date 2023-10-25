@@ -33,12 +33,13 @@ const Update = () => {
     });
   
     useEffect(()=>{
+      // Fetch the genres and perform initial input validation when the component mounts.
       dispatch(getGenres())
       validateInput({...input, platforms:[...input.platforms, platformsDetail]})
       validateInput({...input, genres:[...input.genres, genresDetail]})
     },[])
   
-
+    // Handle changes in input fields and update state and errors.
     const handleChange =(event)=>{
      setInput({
       ...input,
@@ -50,12 +51,13 @@ const Update = () => {
      }))
     };
 
+    // Validate the entire input data and set errors in state
     const validateInput = (inputData) =>{
       const errors = Validation(inputData)
       setErrors(errors)
     }
 
-  
+   // Handle the selection of genres and update the state.
     const handleGenres =(event)=>{
       event.preventDefault();
       const rep = input.genres.find(genre => genre=== event.target.value)
@@ -70,7 +72,7 @@ const Update = () => {
       } event.target.value = "defualt"
     };
   
-  
+   // Handle the removal of a genre from the state.
     const handleDeleteGen = (event)=>{
       const filteredGen = input.genres.filter(genre => genre !== event.target.value)
       setInput({
@@ -80,6 +82,7 @@ const Update = () => {
       validateInput({...input, genres: filteredGen})
     }
 
+    // Handle the selection of platforms and update the state.
     const handlePlatforms =(event)=>{
       event.preventDefault();
       const rep = input.platforms.find(plat => plat=== event.target.value)
@@ -94,7 +97,7 @@ const Update = () => {
       } event.target.value = "defualt"
      };
   
-
+    // Handle the removal of a platform from the state.
     const handleDeletePlat = (event)=>{
       const filteredPlat = input.platforms.filter(plat => plat !== event.target.value)
       setInput({
@@ -104,7 +107,7 @@ const Update = () => {
       validateInput({...input, platforms: filteredPlat})
     }
   
-
+    // Navigate back to the detail page.
     const goBack=(event)=>{
       event.preventDefault();
      navigate("/detail/" + id)
@@ -113,6 +116,7 @@ const Update = () => {
 
     const isSubmitDisabled = Object.keys(errors).length > 0;
   
+  // Handle the submission of the form and dispatch actions based on success or failure.
   const handleSubmit = (event)=>{
      event.preventDefault();
      dispatch(updateVgame(input, id)).then((updateError) =>{
