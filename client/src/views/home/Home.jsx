@@ -1,33 +1,33 @@
 import React from 'react';
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import Card from '../../components/card/Card';
-import { getAllVGames, notReload} from '../../redux/actions';
-import style from "./home.module.css";
-import Paginado from '../../components/paginado/Paginado';
+import { useEffect } from 'react'; // Import the useEffect hook
+import { useDispatch, useSelector } from 'react-redux'; // Import useDispatch and useSelector from Redux
+import Card from '../../components/card/Card'; // Import the Card component
+import { getAllVGames, notReload} from '../../redux/actions';  // Import Redux actions
+import style from "./home.module.css"; // Import CSS styles
 
 
 const Home = () => {
-    const dispatch = useDispatch();
+    const dispatch = useDispatch(); // Initialize the useDispatch hook
+
+    //Get data from the Redux state
     const videoGames = useSelector((state)=> state.paginado);
     const coincidences = useSelector((state)=> state.coincidences);
     const not_reload = useSelector((state)=> state.not_reload)
 
     useEffect(()=>{
+      // Use the useEffect hook for initial data fetching
       if(!not_reload){
-        dispatch(getAllVGames())
-        dispatch(notReload(true))
+        dispatch(getAllVGames()) // Dispatch the action to get all video games
+        dispatch(notReload(true)) // Dispatch the action to indicate not to reload
       }
-    },[])
+    },[]) // The empty dependency array ensures this effect runs only once
 
   return (
     <>
- 
     <div className={style.homeContenedor}>
-
+      {/* Conditional rendering based on the videoGames and coincidences state */}
       {
-
-      videoGames.length ? (videoGames.map((vg)=>{
+       videoGames.length ? (videoGames.map((vg)=>{
         return(
           <div >
           <Card 
@@ -43,7 +43,7 @@ const Home = () => {
           />
           </div>
         )
-      })) : (coincidences===false
+        })) : (coincidences===false
                 ?(<div className={style.divLoading}><p className={style.loading}>No coincidences</p></div>)
                 :(<div className={style.divLoading}><p className={style.loading}>Loading...</p></div>))
       
