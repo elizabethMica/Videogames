@@ -1,8 +1,8 @@
-const { DataTypes } = require('sequelize');
-// Exportamos una funcion que define el modelo
-// Luego le injectamos la conexion a sequelize.
+const { DataTypes } = require('sequelize'); // Import the DataTypes object from the Sequelize library
+
+// Export a function that defines the model and injects the Sequelize connection.
 module.exports = (sequelize) => {
-  // defino el modelo
+  // Define the 'videogame' model using Sequelize
   sequelize.define('videogame', {
     id:{
      type: DataTypes.UUID,
@@ -39,5 +39,5 @@ module.exports = (sequelize) => {
       allowNull:false,
       defaultValue: true
     }
-  }, {timestamps: false});
+  }, {timestamps: false}); // Disable automatic timestamp fields (created_at and updated_at)
 };
